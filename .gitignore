@@ -2,3 +2,4 @@ node_modules
 .next/
 .vscode
 vhx.js
+yarn-error.log

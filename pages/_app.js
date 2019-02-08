@@ -1,15 +1,15 @@
 import App, { Container } from 'next/app';
 import React from 'react';
 import { Provider } from 'react-redux';
-import vhx from '../vhx';
-import withReduxStore from '../lib/with-redux-store';
+import withRedux from 'next-redux-wrapper';
+import initializeStore from '../store';
 
 class OTTApp extends App {
   render() {
-    const { Component, pageProps, reduxStore } = this.props;
+    const { Component, pageProps, store } = this.props;
     return (
       <Container>
-        <Provider store={reduxStore}>
+        <Provider store={store}>
           <Component {...pageProps} />
         </Provider>
       </Container>
@@ -17,4 +17,4 @@ class OTTApp extends App {
   }
 }
 
-export default withReduxStore(OTTApp);
+export default withRedux(initializeStore)(OTTApp);

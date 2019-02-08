@@ -3,7 +3,12 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import thunkMiddleware from 'redux-thunk';
 
 export const browse = (state = {}, action) => {
-  return state;
+  switch (action.type) {
+    case 'SET_BROWSE_ITEMS':
+      return Object.assign({}, state, action.browse);
+    default:
+      return state;
+  }
 };
 
 export const reducers = combineReducers({

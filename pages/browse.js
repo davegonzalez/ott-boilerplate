@@ -8,24 +8,34 @@ const Title = styled.h1`
   font-size: 50px;
 `;
 
-export default class extends React.Component {
-  static async getInitialProps() {
-    const browse = await vhx.browse.list({ product: 31534 });
-    browse._embedded.items.map(async collection => {
+class Browse extends React.Component {
+  static async getInitialProps({ store }) {
+    const initialBrowseList = await vhx.browse.list({ product: 31534 });
+
+    const items = await initialBrowseList._embedded.items.map(async collection => {
       Promise.resolve(vhx.collections.retrieve(collection._links.items.href)).then(item => {
-        console.log({
-          [collection.name]: item,
+        store.dispatch({
+          type: 'SET_BROWSE_ITEMS',
+          browse: {
+            [collection.name]: item,
+          },
         });
       });
     });
 
-    return { browse: browse._embedded.items };
+    return {};
   }
 
   render() {
-    return <Title>browse page</Title>;
+    return (
+      <div>
+        <Title>browse page</Title>
+      </div>
+    );
   }
 }
+
+export default Browse;
 
 // series.map(async item => {
 //   Promise.resolve(
