@@ -1,6 +1,7 @@
 import React from 'react';
 import fetch from 'isomorphic-unfetch';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 import vhx from '../vhx';
 
 const Title = styled.h1`
@@ -13,17 +14,26 @@ class Browse extends React.Component {
     const initialBrowseList = await vhx.browse.list({ product: 31534 });
 
     const items = await initialBrowseList._embedded.items.map(async collection => {
-      Promise.resolve(vhx.collections.retrieve(collection._links.items.href)).then(item => {
-        store.dispatch({
-          type: 'SET_BROWSE_ITEMS',
-          browse: {
-            [collection.name]: item,
-          },
-        });
+      return Promise.resolve(vhx.collections.retrieve(collection._links.items.href)).then(item => {
+        return {
+          ...item,
+          name: collection.name,
+          is_automatic: collection.is_automatic,
+          is_featured: collection.is_featured,
+          items_count: collection.items_count,
+          slug: collection.slug,
+          thumbnail: collection.thumbnail,
+        };
       });
     });
 
-    return {};
+    const browseItems = await Promise.all(items);
+
+    return { browseItems };
+  }
+
+  componentDidMount() {
+    console.log(this.props);
   }
 
   render() {
@@ -35,17 +45,12 @@ class Browse extends React.Component {
   }
 }
 
-export default Browse;
+export default connect(state => state)(Browse);
 
-// series.map(async item => {
-//   Promise.resolve(
-//     vhx.collections.items(item._links.seasons.href),
-//   ).then(season => {
-//     dispatch({
-//       type: SET_SERIES_SEASON,
-//       seasons: {
-//         [item.id]: season,
-//       },
-//     });
-//   });
+// store.dispatch({
+//   type: 'SET_BROWSE_ITEMS',
+//   browse: {
+//     title: collection.name,
+//     ...item,
+//   },
 // });

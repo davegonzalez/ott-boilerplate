@@ -9,7 +9,6 @@ const Title = styled.h1`
 
 export default class extends React.Component {
   static async getInitialProps({ req, query }) {
-    console.log(query);
     return query;
   }
 
