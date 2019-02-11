@@ -2,6 +2,8 @@ import React from 'react';
 import fetch from 'isomorphic-unfetch';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+// import 'slick-carousel/slick/slick.css';
+// import 'slick-carousel/slick/slick-theme.css';
 import vhx from '../vhx';
 
 const Title = styled.h1`
@@ -33,13 +35,25 @@ class Browse extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props);
+    this.props.dispatch({
+      type: 'SET_INITIAL_BROWSE_ITEMS',
+      browse: __NEXT_DATA__.props.initialProps.pageProps.browseItems,
+    });
   }
 
   render() {
     return (
       <div>
-        <Title>browse page</Title>
+        {this.props.browseItems.map(collection => {
+          return (
+            <div>
+              <Title>{collection.name}</Title>
+              {collection._embedded.items.map(item => {
+                return <div>{item.title}</div>;
+              })}
+            </div>
+          );
+        })}
       </div>
     );
   }

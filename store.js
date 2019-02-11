@@ -12,7 +12,9 @@ const reconfigureBrowseData = state => ({
 
 export const browse = (state = {}, action) => {
   switch (action.type) {
-    case 'SET_BROWSE_ITEMS':
+    case 'SET_INITIAL_BROWSE_ITEMS':
+      return Object.assign({}, state, action.browse);
+    case 'UPDATE_BROWSE_ITEMS':
       return Object.assign({}, state, reconfigureBrowseData(action.browse));
     default:
       return state;
