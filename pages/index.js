@@ -1,9 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
+import { fetchSiteData } from '../actions';
 
 const Title = styled.h1`
-  color: red;
+  color: ${props => props.theme.primary};
   font-size: 50px;
 `;
 
-export default () => <Title>My page</Title>;
+const Index = props => {
+  return <Title>My page</Title>;
+};
+
+export default Index;

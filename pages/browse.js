@@ -2,14 +2,17 @@ import React from 'react';
 import fetch from 'isomorphic-unfetch';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-// import 'slick-carousel/slick/slick.css';
-// import 'slick-carousel/slick/slick-theme.css';
+import FeaturedCarousel from 'components/FeaturedCarousel';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import vhx from '../vhx';
 
 const Title = styled.h1`
-  color: red;
+  color: ${props => props.theme.primary};
   font-size: 50px;
 `;
+
+const omitFeaturedCollection = collection => !collection.is_featured;
 
 class Browse extends React.Component {
   static async getInitialProps({ store }) {
@@ -34,6 +37,12 @@ class Browse extends React.Component {
     return { browseItems };
   }
 
+  constructor() {
+    super();
+
+    this.isFeatured = this.isFeatured.bind(this);
+  }
+
   componentDidMount() {
     this.props.dispatch({
       type: 'SET_INITIAL_BROWSE_ITEMS',
@@ -41,10 +50,15 @@ class Browse extends React.Component {
     });
   }
 
+  isFeatured() {
+    return this.props.browseItems.find(collection => collection.is_featured);
+  }
+
   render() {
     return (
       <div>
-        {this.props.browseItems.map(collection => {
+        <FeaturedCarousel {...this.isFeatured()} />
+        {this.props.browseItems.filter(omitFeaturedCollection).map(collection => {
           return (
             <div>
               <Title>{collection.name}</Title>
