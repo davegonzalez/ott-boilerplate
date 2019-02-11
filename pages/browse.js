@@ -60,11 +60,3 @@ class Browse extends React.Component {
 }
 
 export default connect(state => state)(Browse);
-
-// store.dispatch({
-//   type: 'SET_BROWSE_ITEMS',
-//   browse: {
-//     title: collection.name,
-//     ...item,
-//   },
-// });
