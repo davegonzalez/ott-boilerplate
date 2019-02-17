@@ -1,8 +1,17 @@
 import React from 'react';
 import Slider from 'react-slick';
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 
-const SliderStyles = createGlobalStyle`
+const settings = {
+  dots: true,
+  infinite: true,
+  speed: 800,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  fade: true,
+};
+
+const CarouselContainer = styled.div`
   .slick-next {
     right: 15px;
   }
@@ -13,15 +22,6 @@ const SliderStyles = createGlobalStyle`
     }
   }
 `;
-
-const settings = {
-  dots: true,
-  infinite: true,
-  speed: 800,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  fade: true,
-};
 
 const Slide = styled.div`
   background-color: #000;
@@ -83,23 +83,24 @@ const ImageContainer = styled.div`
 
 const FeaturedCarousel = props => {
   return (
-    <Slider {...settings}>
-      {props._embedded.items.map(item => {
-        return (
-          <Slide>
-            <Content>
-              <Title>{item.name}</Title>
-            </Content>
-            <ImageBg>
-              <ImageContainer>
-                <img src={item.thumbnail.medium} />
-              </ImageContainer>
-            </ImageBg>
-          </Slide>
-        );
-      })}
-      <SliderStyles />
-    </Slider>
+    <CarouselContainer>
+      <Slider {...settings}>
+        {props._embedded.items.map(item => {
+          return (
+            <Slide>
+              <Content>
+                <Title>{item.name}</Title>
+              </Content>
+              <ImageBg>
+                <ImageContainer>
+                  <img src={item.thumbnail.medium} />
+                </ImageContainer>
+              </ImageBg>
+            </Slide>
+          );
+        })}
+      </Slider>
+    </CarouselContainer>
   );
 };
 

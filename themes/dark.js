@@ -8,4 +8,5 @@ export default {
   navLinkHover: '#ffffff',
   navBackground: '#141414',
   navBottomOutline: '#2e2e2e',
+  rowBackground: '#141414',
 };
