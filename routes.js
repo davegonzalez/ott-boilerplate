@@ -1,7 +1,6 @@
-const nextRoutes = require('next-routes');
-const routes = (module.exports = nextRoutes());
+const routes = require('next-routes');
 
-routes
+module.exports = routes()
   .add('index', '/')
   .add('browse', '/browse', 'browse')
-  .add('dynamic', '/:slug', 'dynamic');
+  .add('/:slug', 'dynamic');

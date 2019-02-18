@@ -32,15 +32,12 @@ const themes = {
 
 class OTTApp extends App {
   static async getInitialProps({ Component, router, ctx }) {
-    let pageProps = {};
     const site = await fetchSiteData(process.env.SITE_ID);
 
     // Do as little as possible when rendering the error page, in case something
     // in this `getInitialProps` function fails. We don't want to error on the
     // error page, so to speak.
-    if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps(ctx);
-    }
+    const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
 
     return { pageProps, site };
   }

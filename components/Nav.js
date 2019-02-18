@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { rgba } from 'polished';
-import { Link } from 'root/routes';
+import Link from 'next/link';
 
 const Navbar = styled.nav`
   width: 100%;
@@ -44,10 +44,10 @@ const UserStatus = styled(StyledLink)`
   margin-right: 10px;
 `;
 
-const SiteLinks = [{ text: 'Browse', href: '/browse' }, { text: 'Search', href: '/search' }];
+const SiteLinks = [{ text: 'Browse', href: 'browse' }, { text: 'Search', href: 'search' }];
 
 const NavLink = link => (
-  <Link route={link.href} passHref>
+  <Link href={link.href} key={link.href} passHref>
     <StyledLink>{link.text}</StyledLink>
   </Link>
 );

@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "@babel/plugin-proposal-optional-chaining": "^7.2.0",
-    "@vhx/vhxjs": "3.0.0",
+    "@vhx/vhxjs": "https://github.com/vhx/vhx-js.git#remove-request-with",
     "@yolkai/next-routes": "^3.0.0",
     "@zeit/next-css": "^1.0.1",
     "dotenv-webpack": "^1.7.0",

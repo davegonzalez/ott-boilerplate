@@ -802,12 +802,11 @@
   resolved "https://registry.yarnpkg.com/@emotion/unitless/-/unitless-0.7.3.tgz#6310a047f12d21a1036fb031317219892440416f"
   integrity sha512-4zAPlpDEh2VwXswwr/t8xGNDGg8RQiPxtxZ3qQEXyQsBV39ptTdESCjuBvGze1nLMVrxmTIKmnO/nAV8Tqjjzg==
 
-"@vhx/vhxjs@3.0.0":
+"@vhx/vhxjs@https://github.com/vhx/vhx-js.git#remove-request-with":
   version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@vhx/vhxjs/-/vhxjs-3.0.0.tgz#f53dcb16e949a9b05f8eb8804366e4f77dbd47ed"
-  integrity sha512-qQar1DOtWimO1fMeYmt/Ae3hCd3RpJW4n0+F42ytHSKZ39gtWNghr/NDUjusZ3AQJp9cyKPzqS3nHJ5ZOSOcFA==
+  resolved "https://github.com/vhx/vhx-js.git#a0a7dc2fda082803901e3b8c9f0ca1e7e3bde09f"
   dependencies:
-    node-fetch "^2.2.0"
+    node-fetch "^2.3.0"
 
 "@webassemblyjs/ast@1.7.11":
   version "1.7.11"
@@ -4637,7 +4636,7 @@ nice-try@^1.0.4:
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
   integrity sha512-1nh45deeb5olNY7eX82BkPO7SSxR5SSYJiPTrTdFUVYwAl8CKMA5N9PjTYkHiRjisVcxcQ1HXdLhx2qxxJzLNQ==
 
-node-fetch@^2.2.0:
+node-fetch@^2.2.0, node-fetch@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.3.0.tgz#1a1d940bbfb916a1d3e0219f037e89e71f8c5fa5"
   integrity sha512-MOd8pV3fxENbryESLgVIeaGKrdl+uaYhCSSVkjeOb/31/njTpcis5aWfdqgNlHIrKOLRbMnfPINPOML2CIFeXA==

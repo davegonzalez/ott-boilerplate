@@ -1,18 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
-import vhx from '../vhx';
+import { connect } from 'react-redux';
+import vhx from 'root/vhx';
 
 const Title = styled.h1`
   color: red;
   font-size: 50px;
 `;
 
-export default class extends React.Component {
-  static async getInitialProps({ req, query }) {
-    return query;
-  }
+const Dynamic = props => {
+  return <Title>{props.slug} page</Title>;
+};
 
-  render() {
-    return <Title>{this.props.slug} page</Title>;
-  }
-}
+Dynamic.getInitialProps = async ({ query, store }) => {
+  return query;
+};
+
+export default connect(state => state)(Dynamic);
