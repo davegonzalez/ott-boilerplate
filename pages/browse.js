@@ -6,7 +6,7 @@ import FeaturedCarousel from 'components/FeaturedCarousel';
 import BrowseRow from 'components/BrowseRow';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import vhx from '../vhx';
+import vhx from 'root/vhx';
 
 const Container = styled.div`
   background-color: ${props => props.theme.rowBackground};

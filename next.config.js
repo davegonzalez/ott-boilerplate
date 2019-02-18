@@ -15,6 +15,7 @@ module.exports = withCSS({
     );
 
     config.resolve.alias['components'] = path.resolve(__dirname, 'components');
+    config.resolve.alias['root'] = path.resolve(__dirname);
 
     config.module.rules.push({
       test: /\.(eot|woff|woff2|ttf|svg|png|jpg|gif)$/,

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { rgba } from 'polished';
+import { Link } from 'root/routes';
 
 const Navbar = styled.nav`
   width: 100%;
@@ -11,8 +12,7 @@ const Navbar = styled.nav`
   align-items: center;
 `;
 
-// TODO: Turn into href/link?
-const Title = styled.div`
+const Title = styled.a`
   color: ${props => props.theme.title};
   font-size: 1.5em;
   font-weight: 700;
@@ -20,7 +20,7 @@ const Title = styled.div`
   padding-left: 25px;
 `;
 
-const NavLink = styled.a`
+const StyledLink = styled.a`
   padding-left: 10px;
   padding-right: 10px;
   font-size: 14px;
@@ -38,21 +38,26 @@ const LinkContainer = styled.div`
   padding-left: 10px;
 `;
 
-const UserStatus = styled(NavLink)`
+const UserStatus = styled(StyledLink)`
   display: flex;
   justify-content: flex-end;
   margin-right: 10px;
 `;
 
 const SiteLinks = [{ text: 'Browse', href: '/browse' }, { text: 'Search', href: '/search' }];
-const Link = link => <NavLink href={link.href}>{link.text}</NavLink>;
+
+const NavLink = link => (
+  <Link route={link.href} passHref>
+    <StyledLink>{link.text}</StyledLink>
+  </Link>
+);
 
 const Nav = props => {
   return (
     <Navbar>
-      <Title>{props.site.title}</Title>
-      <LinkContainer>{SiteLinks.map(Link)}</LinkContainer>
-      <UserStatus>Start free trial</UserStatus>
+      <Title href={props.site._links.home_page.href}>{props.site.title}</Title>
+      <LinkContainer>{SiteLinks.map(NavLink)}</LinkContainer>
+      <UserStatus href={`${props.site._links.home_page.href}/buy`}>Start free trial</UserStatus>
     </Navbar>
   );
 };
