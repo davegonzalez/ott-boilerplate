@@ -10,10 +10,10 @@ const reconfigureBrowseData = state => ({
   totla: state.total,
 });
 
-export const browse = (state = {}, action) => {
+export const browseItems = (state = [], action) => {
   switch (action.type) {
     case 'SET_INITIAL_BROWSE_ITEMS':
-      return Object.assign({}, state, action.browse);
+      return action.browse;
     case 'UPDATE_BROWSE_ITEMS':
       return Object.assign({}, state, reconfigureBrowseData(action.browse));
     default:
@@ -22,7 +22,7 @@ export const browse = (state = {}, action) => {
 };
 
 export const reducers = combineReducers({
-  browse,
+  browse: browseItems,
 });
 
 const initializeStore = (initialState = {}) => {
