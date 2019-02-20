@@ -29,8 +29,13 @@
     "tiny-slider": "^2.9.1"
   },
   "devDependencies": {
+    "babel-eslint": "^10.0.1",
     "babel-plugin-styled-components": "^1.10.0",
+    "eslint": "^5.14.1",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.12.4",
     "prettier": "^1.16.4",
+    "prop-types": "^15.7.2",
     "redux-devtools-extension": "^2.13.8",
     "url-loader": "^1.1.2"
   },
