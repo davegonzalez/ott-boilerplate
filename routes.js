@@ -4,4 +4,5 @@ module.exports = routes()
   .add('index', '/')
   .add('browse', '/browse', 'browse')
   .add('search', '/search', 'search')
-  .add('/:slug', 'dynamic');
+  .add('watch', '/watch/:slug', 'watch')
+  .add('dynamic', '/browse/:slug', 'dynamic');

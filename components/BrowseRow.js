@@ -22,7 +22,7 @@ const Image = styled.img`
 
 const settings = {
   dots: true,
-  infinite: true,
+  infinite: false,
   speed: 800,
   slidesToShow: 4,
   slidesToScroll: 4,
@@ -60,7 +60,7 @@ const BrowseRow = props => {
       <Slider {...settings}>
         {props.items.map(item => {
           return (
-            <Content>
+            <Content key={item.title}>
               <Image src={item.thumbnail.medium} />
               {item.title}
             </Content>

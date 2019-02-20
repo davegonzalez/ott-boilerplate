@@ -76,7 +76,7 @@ const themes = {
 };
 
 class OTTApp extends App {
-  static async getInitialProps({ Component, router, ctx }) {
+  static async getInitialProps({ Component, ctx }) {
     /**
      * TODO: include notes here about why we're making these requests for on the initial page load
      */

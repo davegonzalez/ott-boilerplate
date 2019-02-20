@@ -44,7 +44,7 @@ const UserStatus = styled(StyledLink)`
   margin-right: 10px;
 `;
 
-const SiteLinks = [{ text: 'Browse', href: 'browse' }, { text: 'Search', href: 'search' }];
+const SiteLinks = [{ text: 'Browse', href: '/browse' }, { text: 'Search', href: '/search' }];
 
 const NavLink = link => (
   <Link href={link.href} key={link.href} passHref>

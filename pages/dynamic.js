@@ -1,12 +1,11 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { connect } from 'react-redux';
-import vhx from 'root/vhx';
 import { Link } from 'root/routes';
 
 const Container = styled.div`
   background-color: ${props => props.theme.rowBackground};
   padding: 40px;
+  height: 100vh;
 `;
 
 const Title = styled.div`
@@ -51,10 +50,11 @@ const Dynamic = props => {
       <List>
         {props.collection._embedded.items.map(collectionItem => {
           return (
-            <Content>
+            <Content key={collectionItem.name}>
               <Link
                 href={`/watch?slug=${collectionItem.name.toLowerCase().replace(/ /g, '-')}`}
                 as={`/watch/${collectionItem.name.toLowerCase().replace(/ /g, '-')}`}
+                params={{ id: collectionItem.id }}
                 passHref
                 prefetch
               >

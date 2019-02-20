@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 import fetch from 'isomorphic-unfetch';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
@@ -45,16 +46,16 @@ const Browse = props => {
       <FeaturedCarousel {...isFeatured(props)} />
       {props.browse.filter(omitFeaturedCollection).map(collection => {
         return (
-          <Fragment>
+          <Fragment key={collection.name}>
             <Link
-              href={`/dynamic?slug=${collection.name.toLowerCase()}`}
-              as={`/${collection.name.toLowerCase()}`}
+              href={`/dynamic?slug=${collection.name.toLowerCase().replace(/ /g, '-')}`}
+              as={`/browse/${collection.name.toLowerCase().replace(/ /g, '-')}`}
               passHref
               prefetch
             >
               <Title>{collection.name}</Title>
             </Link>
-            <BrowseRow items={collection._embedded.items} />
+            <BrowseRow items={collection._embedded.items || collection._embedded.collections} />
           </Fragment>
         );
       })}
@@ -63,3 +64,11 @@ const Browse = props => {
 };
 
 export default Browse;
+
+Browse.propTypes = {
+  browse: PropTypes.shape({}),
+};
+
+Browse.defaultProps = {
+  browse: [],
+};
