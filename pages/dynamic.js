@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'root/routes';
-import { fetchCollection } from 'root/actions';
+import { fetchCollectionItems } from 'root/actions';
 
 const Container = styled.div`
   background-color: ${props => props.theme.rowBackground};
@@ -74,7 +74,7 @@ const Dynamic = props => {
 };
 
 Dynamic.getInitialProps = async ({ store, query }) => {
-  const collection = await fetchCollection(query.slug);
+  const collection = await fetchCollectionItems(query.slug);
 
   return {
     query,

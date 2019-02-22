@@ -10,6 +10,7 @@
     "@vhx/vhxjs": "https://github.com/vhx/vhx-js.git#remove-request-with",
     "@yolkai/next-routes": "^3.0.0",
     "@zeit/next-css": "^1.0.1",
+    "date-fns": "2.0.0-alpha.27",
     "dotenv-webpack": "^1.7.0",
     "express": "^4.16.4",
     "isomorphic-unfetch": "^3.0.0",

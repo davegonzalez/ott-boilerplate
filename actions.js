@@ -17,10 +17,11 @@ export const fetchSiteData = () => {
 };
 
 export const fetchAndFormatBrowse = async () => {
-  const initialBrowseList = await vhx.browse.list({ product: process.env.SUBSCRIPTION_ID });
+  // const initialBrowseList = await vhx.browse.list({ product: process.env.SUBSCRIPTION_ID });
+  const initialBrowseList = await fetchBrowse();
 
   const items = await initialBrowseList._embedded.items.map(async collection => {
-    return Promise.resolve(vhx.collections.retrieve(collection._links.items.href)).then(item => {
+    return Promise.resolve(fetchCollection(collection._links.items.href)).then(item => {
       return {
         ...item,
         name: collection.name,
@@ -48,7 +49,18 @@ export const fetchBrowse = () => {
   }).then(res => res.json());
 };
 
-export const fetchCollection = slug => {
+export const fetchCollection = href => {
+  return fetch(href, {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `Basic ${localkey}`,
+    },
+    credentials: 'include',
+  }).then(res => res.json());
+};
+
+export const fetchCollectionItems = slug => {
   return fetch(`http://api.crystal.local/collections/${slug}/items`, {
     method: 'GET',
     headers: {
@@ -61,7 +73,7 @@ export const fetchCollection = slug => {
 };
 
 export const fetchVideo = slug => {
-  return fetch(`http://api.crystal.local/videos/${slug}`, {
+  return fetch(`http://api.crystal.local/videos/${slug}?url=${slug}`, {
     method: 'GET',
     headers: {
       Accept: 'application/json',

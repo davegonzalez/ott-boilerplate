@@ -1,15 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Slider from 'react-slick';
 import styled from 'styled-components';
+import { Link } from 'root/routes';
 
 const Container = styled.div`
   padding: 30px;
-`;
-
-const Content = styled.div`
-  background-color: ${props => props.theme.rowBackground};
-  color: ${props => props.theme.navLink};
-  padding: 0 10px;
 `;
 
 const Image = styled.img`
@@ -18,6 +14,22 @@ const Image = styled.img`
   background-color: ${props => props.theme.rowBackground};
   margin-bottom: 8px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.08);
+  opacity: 1;
+  transition: opacity 0.4s ease;
+`;
+
+const Content = styled.div`
+  background-color: ${props => props.theme.rowBackground};
+  color: ${props => props.theme.navLink};
+  padding: 0 10px;
+  cursor: pointer;
+  position: relative;
+
+  &:hover {
+    ${Image} {
+      opacity: 0.7;
+    }
+  }
 `;
 
 const settings = {
@@ -60,10 +72,18 @@ const BrowseRow = props => {
       <Slider {...settings}>
         {props.items.map(item => {
           return (
-            <Content key={item.title}>
-              <Image src={item.thumbnail.medium} />
-              {item.title}
-            </Content>
+            <Link
+              href={`/watch?slug=${item.url}`}
+              as={`/watch/${item.url}`}
+              passHref
+              prefetch
+              key={item.title}
+            >
+              <Content>
+                <Image src={item.thumbnail.medium} />
+                {item.title}
+              </Content>
+            </Link>
           );
         })}
       </Slider>
@@ -72,3 +92,7 @@ const BrowseRow = props => {
 };
 
 export default BrowseRow;
+
+BrowseRow.propTypes = {
+  items: PropTypes.arrayOf(PropTypes.shape({})),
+};
