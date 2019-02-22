@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'root/routes';
+import { fetchCollection } from 'root/actions';
 
 const Container = styled.div`
   background-color: ${props => props.theme.rowBackground};
@@ -44,17 +45,18 @@ const StyledLink = styled.a`
 `;
 
 const Dynamic = props => {
+  const items = props.collection._embedded.items || props.collection._embedded.collections;
+
   return (
     <Container>
       <Title>{props.collection.name}</Title>
       <List>
-        {props.collection._embedded.items.map(collectionItem => {
+        {items.map(collectionItem => {
           return (
             <Content key={collectionItem.name}>
               <Link
-                href={`/watch?slug=${collectionItem.name.toLowerCase().replace(/ /g, '-')}`}
-                as={`/watch/${collectionItem.name.toLowerCase().replace(/ /g, '-')}`}
-                params={{ id: collectionItem.id }}
+                href={`/watch?slug=${collectionItem.url}`}
+                as={`/watch/${collectionItem.url}`}
                 passHref
                 prefetch
               >
@@ -72,8 +74,7 @@ const Dynamic = props => {
 };
 
 Dynamic.getInitialProps = async ({ store, query }) => {
-  const browse = store.getState().browse;
-  const collection = browse.find(collection => collection.slug === query.slug);
+  const collection = await fetchCollection(query.slug);
 
   return {
     query,

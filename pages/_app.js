@@ -2,11 +2,11 @@ import App, { Container } from 'next/app';
 import React from 'react';
 import { Provider } from 'react-redux';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
-import Nav from '../components/Nav';
-import dark from '../themes/dark';
 import withRedux from 'next-redux-wrapper';
-import initializeStore from '../store';
-import { fetchSiteData, fetchAndFormatBrowse } from '../actions';
+import Nav from 'root/components/Nav';
+import dark from 'root/themes/dark';
+import initializeStore from 'root/store';
+import { fetchSiteData, fetchAndFormatBrowse } from 'root/actions';
 
 const Global = createGlobalStyle`
   *,
@@ -103,13 +103,6 @@ class OTTApp extends App {
       setTheme: 'dark',
     };
   }
-
-  // componentDidMount() {
-  // this.props.store.dispatch({
-  //   type: 'SET_INITIAL_BROWSE_ITEMS',
-  //   browse: __NEXT_DATA__.props.initialProps.browseItems,
-  // });
-  // }
 
   render() {
     const { Component, pageProps, store } = this.props;

@@ -1,8 +1,6 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import fetch from 'isomorphic-unfetch';
 import styled from 'styled-components';
-import { connect } from 'react-redux';
 import FeaturedCarousel from 'components/FeaturedCarousel';
 import BrowseRow from 'components/BrowseRow';
 import { Link } from 'root/routes';

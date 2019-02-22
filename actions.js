@@ -2,6 +2,7 @@ import fetch from 'isomorphic-unfetch';
 import vhx from 'root/vhx';
 
 const key = new Buffer(process.env.OTT_API_KEY).toString('base64');
+const localkey = new Buffer(process.env.LOCAL_API_KEY).toString('base64');
 
 export const fetchSiteData = () => {
   return fetch(`https://api.vhx.tv/sites/${process.env.SITE_ID}`, {
@@ -33,4 +34,40 @@ export const fetchAndFormatBrowse = async () => {
   });
 
   return Promise.all(items);
+};
+
+export const fetchBrowse = () => {
+  return fetch(`http://api.crystal.local/browse?product=${process.env.SUBSCRIPTION_ID}`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `Basic ${localkey}`,
+    },
+    credentials: 'include',
+  }).then(res => res.json());
+};
+
+export const fetchCollection = slug => {
+  return fetch(`http://api.crystal.local/collections/${slug}/items`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `Basic ${localkey}`,
+    },
+    credentials: 'include',
+  }).then(res => res.json());
+};
+
+export const fetchVideo = slug => {
+  return fetch(`http://api.crystal.local/videos/${slug}`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `Basic ${localkey}`,
+    },
+    credentials: 'include',
+  }).then(res => res.json());
 };
