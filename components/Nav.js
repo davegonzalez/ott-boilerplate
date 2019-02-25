@@ -28,7 +28,6 @@ const StyledLink = styled.a`
   letter-spacing: 2px;
   text-transform: uppercase;
   transition: color 200ms ease, opacity 200ms ease;
-  flex: 1;
 
   &:hover {
     color: ${props => rgba(props.theme.navLinkHover, 0.7)};
@@ -45,6 +44,13 @@ const UserStatus = styled(StyledLink)`
   margin-right: 10px;
 `;
 
+const Rightside = styled.div`
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+  align-items: center;
+`;
+
 const SiteLinks = [{ text: 'Browse', href: '/browse' }];
 
 const NavLink = link => (
@@ -58,8 +64,10 @@ const Nav = props => {
     <Navbar>
       <Title href={props.site._links.home_page.href}>{props.site.title}</Title>
       <LinkContainer>{SiteLinks.map(NavLink)}</LinkContainer>
-      <Search />
-      <UserStatus href={`${props.site._links.home_page.href}/buy`}>Start free trial</UserStatus>
+      <Rightside>
+        <Search />
+        <UserStatus href={`${props.site._links.home_page.href}/buy`}>Start free trial</UserStatus>
+      </Rightside>
     </Navbar>
   );
 };

@@ -108,6 +108,20 @@ export const fetchVideo = slug => {
   }).then(res => res.json());
 };
 
+export const test = email => {
+  return fetch(`http://api.crystal.local/login/${email}/confirm`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `Basic ${localkey}`,
+    },
+    credentials: 'include',
+  })
+    .then(res => res.json())
+    .catch(console.log);
+};
+
 export const searchAll = type => query => {
   return fetch(`http://api.crystal.local/${type}?query=${query}`, {
     method: 'GET',
@@ -120,7 +134,7 @@ export const searchAll = type => query => {
   })
     .then(res => res.json())
     .then(res => {
-      return { [type]: res.total > 0 ? res : {} };
+      return res._embedded?.collections || res._embedded?.videos;
     });
 };
 
@@ -128,5 +142,10 @@ export const searchVideos = searchAll('videos');
 export const searchCollections = searchAll('collections');
 
 export const search = query => {
-  return Promise.all([searchCollections(query), searchVideos(query)]);
+  return Promise.all([searchCollections(query), searchVideos(query)]).then(results => {
+    const collections = results[0];
+    const videos = results[1];
+
+    return [...collections, ...videos];
+  });
 };
