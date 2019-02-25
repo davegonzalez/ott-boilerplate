@@ -6,7 +6,7 @@ import withRedux from 'next-redux-wrapper';
 import Nav from 'root/components/Nav';
 import dark from 'root/themes/dark';
 import initializeStore from 'root/store';
-import { fetchSiteData, fetchAndFormatBrowse } from 'root/actions';
+import { fetchSiteData } from 'root/actions';
 
 const Global = createGlobalStyle`
   *,
@@ -79,19 +79,13 @@ class OTTApp extends App {
      * TODO: include notes here about why we're making these requests for on the initial page load
      */
     const site = await fetchSiteData();
-    const browseItems = await fetchAndFormatBrowse();
-
-    ctx.store.dispatch({
-      type: 'SET_INITIAL_BROWSE_ITEMS',
-      browse: browseItems,
-    });
 
     // Do as little as possible when rendering the error page, in case something
     // in this `getInitialProps` function fails. We don't want to error on the
     // error page, so to speak.
     const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
 
-    return { pageProps, site, browseItems };
+    return { pageProps, site };
   }
 
   constructor() {
@@ -110,7 +104,7 @@ class OTTApp extends App {
           <Provider store={store}>
             <Global />
             <Nav site={this.props.site} />
-            <Component {...pageProps} browse={this.props.browseItems} />
+            <Component {...pageProps} />
           </Provider>
         </ThemeProvider>
       </Container>

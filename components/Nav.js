@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { rgba } from 'polished';
 import Link from 'next/link';
+import Search from 'components/Search';
 
 const Navbar = styled.nav`
   width: 100%;
@@ -44,7 +45,7 @@ const UserStatus = styled(StyledLink)`
   margin-right: 10px;
 `;
 
-const SiteLinks = [{ text: 'Browse', href: '/browse' }, { text: 'Search', href: '/search' }];
+const SiteLinks = [{ text: 'Browse', href: '/browse' }];
 
 const NavLink = link => (
   <Link href={link.href} key={link.href} passHref>
@@ -57,6 +58,7 @@ const Nav = props => {
     <Navbar>
       <Title href={props.site._links.home_page.href}>{props.site.title}</Title>
       <LinkContainer>{SiteLinks.map(NavLink)}</LinkContainer>
+      <Search />
       <UserStatus href={`${props.site._links.home_page.href}/buy`}>Start free trial</UserStatus>
     </Navbar>
   );

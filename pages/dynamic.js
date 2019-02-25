@@ -73,7 +73,7 @@ const Dynamic = props => {
   );
 };
 
-Dynamic.getInitialProps = async ({ store, query }) => {
+Dynamic.getInitialProps = async ({ query }) => {
   const collection = await fetchCollectionItems(query.slug);
 
   return {

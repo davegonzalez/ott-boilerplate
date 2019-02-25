@@ -72,8 +72,8 @@ export const fetchCollectionItems = slug => {
   }).then(res => res.json());
 };
 
-export const fetchVideo = slug => {
-  return fetch(`http://api.crystal.local/videos/${slug}?url=${slug}`, {
+export const fetchCollectionItemsByHref = href => {
+  return fetch(`${href}`, {
     method: 'GET',
     headers: {
       Accept: 'application/json',
@@ -82,4 +82,64 @@ export const fetchVideo = slug => {
     },
     credentials: 'include',
   }).then(res => res.json());
+};
+
+export const fetchComments = href => {
+  return fetch(`${href}`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `Basic ${localkey}`,
+    },
+    credentials: 'include',
+  }).then(res => res.json());
+};
+
+export const fetchVideo = slug => {
+  return fetch(`http://api.crystal.local/videos/${slug}?url=${slug}&include_collections=true`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `Basic ${localkey}`,
+    },
+    credentials: 'include',
+  }).then(res => res.json());
+};
+
+export const searchVideos = query => {
+  return fetch(`http://api.crystal.local/videos?query=${query}`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `Basic ${localkey}`,
+    },
+    credentials: 'include',
+  })
+    .then(res => res.json())
+    .then(res => {
+      return { videos: res.total > 0 ? res : {} };
+    });
+};
+
+export const searchCollections = query => {
+  return fetch(`http://api.crystal.local/collections?query=${query}`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `Basic ${localkey}`,
+    },
+    credentials: 'include',
+  })
+    .then(res => res.json())
+    .then(res => {
+      return { collections: res.total > 0 ? res : {} };
+    });
+};
+
+export const search = query => {
+  return Promise.all([searchCollections(query), searchVideos(query)]);
 };

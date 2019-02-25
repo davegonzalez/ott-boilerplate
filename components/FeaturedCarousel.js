@@ -9,7 +9,11 @@ const settings = {
   slidesToShow: 1,
   slidesToScroll: 1,
   fade: true,
+  autoplay: true,
+  autoplaySpeed: 6000,
 };
+
+const CAROUSEL_HEIGHT = '600px';
 
 const CarouselContainer = styled.div`
   .slick-next {
@@ -18,8 +22,16 @@ const CarouselContainer = styled.div`
 
   .slick-slide {
     > div {
-      height: 500px;
+      height: ${CAROUSEL_HEIGHT};
     }
+  }
+
+  .slick-dots {
+    bottom: 15px;
+  }
+
+  .slick-dots li button:before {
+    color: ${props => props.theme.title};
   }
 `;
 
@@ -66,7 +78,7 @@ const ImageContainer = styled.div`
   position: fixed;
 
   > img {
-    height: 500px;
+    height: ${CAROUSEL_HEIGHT};
   }
 
   &::before {
@@ -87,13 +99,13 @@ const FeaturedCarousel = props => {
       <Slider {...settings}>
         {props._embedded.items.map(item => {
           return (
-            <Slide>
+            <Slide key={item.name}>
               <Content>
                 <Title>{item.name}</Title>
               </Content>
               <ImageBg>
                 <ImageContainer>
-                  <img src={item.thumbnail.medium} />
+                  <img src={item.thumbnail.medium} alt={item.name} />
                 </ImageContainer>
               </ImageBg>
             </Slide>

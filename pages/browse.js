@@ -5,6 +5,7 @@ import FeaturedCarousel from 'components/FeaturedCarousel';
 import BrowseRow from 'components/BrowseRow';
 import { Link } from 'root/routes';
 import Head from 'next/head';
+import { fetchAndFormatBrowse } from 'root/actions';
 
 // see: https://github.com/fridays/next-routes/issues/269
 // import 'slick-carousel/slick/slick.css';
@@ -59,6 +60,12 @@ const Browse = props => {
       })}
     </Container>
   );
+};
+
+Browse.getInitialProps = async () => {
+  const browse = await fetchAndFormatBrowse();
+
+  return { browse };
 };
 
 export default Browse;

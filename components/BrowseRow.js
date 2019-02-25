@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import PropTypes from 'prop-types';
 import Slider from 'react-slick';
@@ -79,10 +80,12 @@ const BrowseRow = props => {
               prefetch
               key={item.title}
             >
-              <Content>
-                <Image src={item.thumbnail.medium} />
-                {item.title}
-              </Content>
+              <a>
+                <Content>
+                  <Image src={item.thumbnail.medium} />
+                  {item.title}
+                </Content>
+              </a>
             </Link>
           );
         })}
