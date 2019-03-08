@@ -104,7 +104,7 @@ class OTTApp extends App {
           <Provider store={store}>
             <Global />
             <Nav site={this.props.site} />
-            <Component {...pageProps} />
+            <Component {...pageProps} site={this.props.site} />
           </Provider>
         </ThemeProvider>
       </Container>
