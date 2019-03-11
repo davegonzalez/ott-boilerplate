@@ -10,4 +10,6 @@ export default {
   navBackground: '#141414',
   navBottomOutline: '#2e2e2e',
   rowBackground: '#141414',
+  primaryButton: '#e4e5f2',
+  primaryButtonBg: '#ffffff',
 };
