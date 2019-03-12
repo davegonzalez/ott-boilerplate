@@ -4,7 +4,9 @@
 
 ![Alt Text](https://media.giphy.com/media/t7u9bWYaqfXsoz4nLk/giphy.gif)
 
-Small project that I took on in my free time to rebuild most of the customer/watch pages seen on sites like mhzchoice.vhx.tv or yogawithadriene.vhx.tv. This uses the VHX/Vimeo OTT API for all requests. It does not have everything in place (in particular authentication and pagination). See here for a roadmap of things to do if this were to be mostly re-usable: https://github.com/davegonzalez/ott-boilerplate/projects/1
+Small project that I took on in my free time to rebuild most of the customer/watch pages seen on sites like mhzchoice.vhx.tv or yogawithadriene.vhx.tv. This uses the VHX/Vimeo OTT API for all requests. It does not have everything in place (in particular authentication and pagination).
+
+Roadmap of things to do to make this actually useable: https://github.com/davegonzalez/ott-boilerplate/projects/1
 
 ## Why?
 
