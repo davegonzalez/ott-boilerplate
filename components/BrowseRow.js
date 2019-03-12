@@ -73,13 +73,7 @@ const BrowseRow = props => {
       <Slider {...settings}>
         {props.items.map(item => {
           return (
-            <Link
-              href={`/watch?slug=${item.url}`}
-              as={`/watch/${item.url}`}
-              passHref
-              prefetch
-              key={item.title}
-            >
+            <Link route={`/watch/${item.url}`} passHref prefetch key={item.title}>
               <a>
                 <Content>
                   <Image src={item.thumbnail.medium} />

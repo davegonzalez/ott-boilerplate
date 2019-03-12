@@ -54,12 +54,7 @@ const Dynamic = props => {
         {items.map(collectionItem => {
           return (
             <Content key={collectionItem.name}>
-              <Link
-                href={`/watch?slug=${collectionItem.url}`}
-                as={`/watch/${collectionItem.url}`}
-                passHref
-                prefetch
-              >
+              <Link route={`/watch/${collectionItem.url}`} passHref prefetch>
                 <StyledLink>
                   <Image src={collectionItem.thumbnail.medium} />
                   <div>{collectionItem.name}</div>

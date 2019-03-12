@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-unfetch';
 
-const localApi = 'http://api.crystal.local/';
-const productionApi = 'https://api.vhx.tv/';
+const localApi = 'http://api.crystal.local';
+const productionApi = 'https://api.vhx.tv';
 
 const key = new Buffer(process.env.OTT_API_KEY).toString('base64');
 const localkey = new Buffer(process.env.LOCAL_API_KEY).toString('base64');
@@ -62,12 +62,12 @@ export const fetchCollection = href => {
 };
 
 export const fetchCollectionItems = slug => {
-  return fetch(`${localApi}/collections/${slug}/items`, {
+  return fetch(`${localApi}/collections/${slug}/items?site_id=${process.env.SITE_ID}`, {
     method: 'GET',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      Authorization: `Basic ${localKey}`,
+      Authorization: `Basic ${localkey}`,
     },
     credentials: 'include',
   }).then(res => res.json());

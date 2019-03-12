@@ -9,13 +9,7 @@ const Title = styled.h4`
 `;
 
 const Card = video => (
-  <Link
-    href={`/watch?slug=${video.url}`}
-    as={`/watch/${video.url}`}
-    passHref
-    prefetch
-    key={video.title}
-  >
+  <Link route={`/watch/${video.url}`} passHref prefetch key={video.title}>
     <a
       css={`
         padding: 15px 0;

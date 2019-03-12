@@ -47,8 +47,7 @@ const Browse = props => {
         return (
           <Fragment key={collection.name}>
             <Link
-              href={`/dynamic?slug=${collection.name.toLowerCase().replace(/ /g, '-')}`}
-              as={`/browse/${collection.name.toLowerCase().replace(/ /g, '-')}`}
+              route={`/browse/${collection.name.toLowerCase().replace(/ /g, '-')}`}
               passHref
               prefetch
             >

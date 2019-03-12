@@ -88,7 +88,6 @@ Watch.getInitialProps = async ({ query }) => {
     const more = (await hasCollections(watch))
       ? await fetchCollectionItemsByHref(watch._embedded?.collections[0]._links.items.href)
       : {};
-
     return { watch, more, comments, url: query.slug };
   } catch (e) {
     return { watch: {} };
